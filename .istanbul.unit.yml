@@ -1,0 +1,15 @@
+instrumentation:
+  root: ./src
+  excludes:
+    - '**/*.spec.js'
+    - 'api/**/*router.js'
+    - 'routing/**/*.js'
+    - 'app.js'
+reporting:
+  dir: ./coverage_unit
+checks:
+  global:
+    statements: 95
+    lines: 95
+    branches: 95
+    functions: 100

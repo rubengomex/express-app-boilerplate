@@ -1,0 +1,5 @@
+apidocs/
+docs/
+.vscode/
+coverage_integration/
+coverage_unit/
