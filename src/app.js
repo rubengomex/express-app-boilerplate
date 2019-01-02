@@ -1,6 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const logger = require('morgan')
 const helmet = require('helmet')
 const config = require('configuration')
 const database = require('database')
@@ -11,7 +10,7 @@ const app = express()
 
 app.use(helmet())
 if(env && (env === 'dev' || env === 'development')) {
-  app.use(logger('combined'))
+  app.use(require('morgan')('combined'))
 }
 app.use(bodyParser.json())
 app.use('/api', api)

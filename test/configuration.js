@@ -1,3 +1,4 @@
+// need to set this as test env to not log morgan logs when running tests
 process.env.ENVIRONMENT = 'test'
 const chai = require('chai')
 const { expect, should } = require('chai')

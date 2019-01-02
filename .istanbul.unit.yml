@@ -2,7 +2,7 @@ instrumentation:
   root: ./src
   excludes:
     - '**/*.spec.js'
-    - 'api/**/*router.js'
+    - 'api/**/*routes.js'
     - 'routing/**/*.js'
     - 'app.js'
 reporting:

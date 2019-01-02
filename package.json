@@ -1,7 +1,7 @@
 {
   "name": "express-app-boilerplate",
   "version": "1.0.0",
-  "description": "Express starter bolierplate app for new project using express",
+  "description": "Express starter boilerplate app for new project using express",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./src/**/*.js",
@@ -17,13 +17,14 @@
     "build:docs": "npm run build:jsdocs && npm run build:apidocs",
     "show:docs": "npm run show:jsdocs && npm run show:apidocs",
     "show:coverage": "opener ./coverage_unit/lcov-report/index.html && opener ./coverage_integration/lcov-report/index.html",
-    "test:unit": "istanbul cover --config ./.istanbul.unit.yml _mocha -- ./src/**/*.spec.js ./src/**/**/*.spec.js -t 20000 --recursive -R spec --full-trace --require ./test/configuration.js",
-    "test:integration": "istanbul cover --config ./.istanbul.integration.yml _mocha -- ./test/integration/**/*.test.js --recursive --reporter spec --require ./test/configuration.js",
-    "test:watch": "npm run test:unit -- -w",
-    "test": "npm run test:unit && npm run test:integration",
-    "start:dev": "npm run watch:lint",
+    "test:unit": "NODE_PATH=src istanbul cover --config ./.istanbul.unit.yml _mocha -- ./src/**/*.spec.js ./src/**/**/*.spec.js -t 20000 --recursive -R spec --full-trace --require ./test/configuration.js",
+    "test:integration": "NODE_PATH=src istanbul cover --config ./.istanbul.integration.yml _mocha -- ./test/integration/**/*.test.js --recursive --reporter spec --require ./test/configuration.js",
+    "test:watch": "NODE_PATH=src npm run test:unit -- -w",
+    "test": "NODE_PATH=src npm run test:unit && npm run test:integration",
+    "debug": "NODE_PATH=src nodemon --inspect",
+    "start:dev": "NODE_PATH=src npm run watch:lint",
     "start": "NODE_PATH=src nodemon",
-    "build": "npm run build:docs && npm run lint && npm t && npm run show:coverage && npm run show:docs",
+    "build": "NODE_PATH=src npm run build:docs && npm run lint && npm t",
     "prepublishOnly": "npm run lint && npm t"
   },
   "repository": {
@@ -42,13 +43,6 @@
     "url": "https://github.com/rubengomex/express-app-boilerplate/issues"
   },
   "homepage": "https://github.com/rubengomex/express-app-boilerplate#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "helmet": "^3.13.0",
-    "mongoose": "^5.2.9",
-    "morgan": "^1.9.0"
-  },
   "devDependencies": {
     "apidoc": "^0.17.6",
     "babel-eslint": "^8.2.6",
@@ -59,6 +53,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-mocha": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^3.1.0",
     "eslint-watch": "3.1.3",
@@ -67,10 +62,18 @@
     "jsdoc": "^3.5.5",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.3",
+    "morgan": "^1.9.1",
     "opener": "^1.5.0",
+    "prettier": "^1.15.3",
     "rimraf": "^2.6.2",
     "sinon": "^6.1.5",
     "sinon-chai": "^3.2.0",
     "supertest": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "mongoose": "^5.2.9"
   }
 }

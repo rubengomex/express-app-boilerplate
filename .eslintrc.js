@@ -11,8 +11,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: ['mocha'],
+  plugins: ['mocha', 'prettier'],
   rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await
@@ -49,11 +51,11 @@ module.exports = {
     'no-unused-expressions': 'off',
     //mocha/testing rules
     'mocha/no-exclusive-tests': 'error'
+    // enable prettier (un comment this line to appear as error in run time)
+    //'prettier/prettier': 'error'
   },
   globals: {
     expect: true,
-    config: true,
-    user: true,
     sinon: true
   }
 }
